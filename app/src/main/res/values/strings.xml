@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Guardian App</string>
+    <string name="no_news">No news found</string>
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_title">News Settings</string>
+    <string name="no_connection">No internet connection</string>
+    <string name="category_setting_label">Category</string>
+    <string name="category_setting_key" translatable="false">sectionName</string>
+    <string name="category_setting_default" translatable="false">Sport</string>
+
+    <string name="settings_order_by_label">Order By</string>
+    <string name="settings_order_by_key" translatable="false">orderBy</string>
+    <string name="settings_order_by_default" translatable="false">newest</string>
+
+    <string name="settings_order_by_category_label">Least Recent</string>
+    <string name="settings_order_by_category_value" translatable="false">oldest</string>
+
+    <string name="settings_order_by_most_recent_label">Most Recent</string>
+    <string name="settings_order_by_most_recent_value" translatable="false">newest</string>
+
+
+</resources>
