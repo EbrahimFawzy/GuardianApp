@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             newsList.setEmptyView(mEmptyStateTextVeiw);
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
+            onResume();
         } else {
             View LoadingIndicator = findViewById(R.id.loading_spinner);
             LoadingIndicator.setVisibility(View.GONE);
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             mEmptyStateTextVeiw.setText(R.string.no_connection);
         }
     }
+
 
     @Override
     public Loader<List<NewsClass>> onCreateLoader(int i, Bundle bundle) {
@@ -71,10 +73,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getString(R.string.settings_order_by_default));
         Uri baseuri = Uri.parse(URL);
         Uri.Builder uriBuilder = baseuri.buildUpon();
+        uriBuilder.appendQueryParameter("format", "json");
         uriBuilder.appendQueryParameter("pageSize", "10");
         uriBuilder.appendQueryParameter("q", sectionName);
         uriBuilder.appendQueryParameter("order-by", orderBy);
         return new NewsLoader(this, uriBuilder.toString());
+    }
+
+    @Override
+    protected void onResume() {
+        onRestart();
+        super.onResume();
     }
 
     @Override

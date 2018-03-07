@@ -24,18 +24,6 @@ public final class NewsUtils {
     private NewsUtils() {
     }
 
-    public static List<NewsClass> extractNews(String newsJson) {
-        URL url = createUrl(newsJson);
-        String jsonResponse = null;
-        try {
-            jsonResponse = makeHttpRequest(url);
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem making the HTTP Request.", e);
-        }
-        List<NewsClass> news = extractFeatureFromJson(jsonResponse);
-        return news;
-    }
-
     public static URL createUrl(String stringUrl) {
         URL url = null;
         try {
@@ -101,8 +89,8 @@ public final class NewsUtils {
                 String date = currentNew.getString("webPublicationDate");
                 JSONArray nameArray = currentNew.getJSONArray("tags");
                 JSONObject auther = nameArray.getJSONObject(0);
-                String firstName = auther.getString("firstName");
-                String lastName = auther.getString("lastName");
+                String firstName = auther.optString("firstName");
+                String lastName = auther.optString("lastName");
                 NewsClass NEW = new NewsClass(Title, Name, URL, firstName + " " + lastName, date);
                 news.add(NEW);
             }
