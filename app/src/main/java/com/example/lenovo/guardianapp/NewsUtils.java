@@ -87,10 +87,16 @@ public final class NewsUtils {
                 String Name = currentNew.getString("sectionName");
                 String URL = currentNew.getString("webUrl");
                 String date = currentNew.getString("webPublicationDate");
+                String firstName = "";
+                String lastName = "";
                 JSONArray nameArray = currentNew.getJSONArray("tags");
-                JSONObject auther = nameArray.getJSONObject(0);
-                String firstName = auther.optString("firstName");
-                String lastName = auther.optString("lastName");
+                try {
+                    JSONObject author = nameArray.getJSONObject(0);
+                    firstName = author.getString("firstName");
+                    lastName = author.getString("lastName");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 NewsClass NEW = new NewsClass(Title, Name, URL, firstName + " " + lastName, date);
                 news.add(NEW);
             }
